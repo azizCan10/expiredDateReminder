@@ -16,12 +16,19 @@ import com.example.expireddatereminder.business.concretes.ProductManager;
 import com.example.expireddatereminder.dataAccess.concretes.ProductRepositoryImpl;
 import com.example.expireddatereminder.databinding.ActivityMainBinding;
 import com.example.expireddatereminder.entities.concretes.Product;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
     private RecyclerViewProductAdapter productAdapter;
+
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = binding.adView;
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
