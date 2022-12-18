@@ -1,10 +1,10 @@
-package com.example.expireddatereminder.dataAccess.abstracts;
+package com.example.expireddatereminder.service;
 
-import com.example.expireddatereminder.entities.concretes.Product;
+import com.example.expireddatereminder.entity.Product;
 
 import java.util.List;
 
-public interface ProductRepository {
+public interface ProductService {
     void add(Product product);
     void update(Product product);
     void delete(int id);

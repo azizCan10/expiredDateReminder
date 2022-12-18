@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 
-import com.example.expireddatereminder.business.abstracts.ProductService;
-import com.example.expireddatereminder.business.concretes.ProductManager;
-import com.example.expireddatereminder.dataAccess.concretes.ProductRepositoryImpl;
+import com.example.expireddatereminder.service.ProductService;
+import com.example.expireddatereminder.service.impl.ProductServiceImpl;
+import com.example.expireddatereminder.repository.impl.ProductRepositoryImpl;
 import com.example.expireddatereminder.databinding.ActivityProductSettingsBinding;
-import com.example.expireddatereminder.entities.concretes.Product;
+import com.example.expireddatereminder.entity.Product;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -47,7 +47,7 @@ public class ProductSettingsActivity extends AppCompatActivity {
             }
         });
 
-        productService = new ProductManager(new ProductRepositoryImpl(this));
+        productService = new ProductServiceImpl(new ProductRepositoryImpl(this));
 
         initDatePicker();
         productId = Integer.valueOf(getIntent().getStringExtra("id"));
@@ -59,6 +59,7 @@ public class ProductSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 productService.update(new Product(productId, binding.edtTxtProductName.getText().toString(), binding.btnSelectDate.getText().toString()));
+                ProductSettingsActivity.super.onBackPressed();
             }
         });
 
@@ -66,19 +67,10 @@ public class ProductSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 productService.delete(productId);
+                ProductSettingsActivity.super.onBackPressed();
             }
         });
     }
-
-//    private String getTodaysDate() {
-//        Calendar cal = Calendar.getInstance();
-//
-//        int year = cal.get(Calendar.YEAR);
-//        int month = cal.get(Calendar.MONTH);
-//        int day = cal.get(Calendar.DAY_OF_MONTH);
-//
-//        return day + "/" + (month + 1) + "/" + year;
-//    }
 
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {

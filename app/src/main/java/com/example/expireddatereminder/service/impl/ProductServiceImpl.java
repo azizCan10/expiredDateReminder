@@ -1,15 +1,15 @@
-package com.example.expireddatereminder.business.concretes;
+package com.example.expireddatereminder.service.impl;
 
-import com.example.expireddatereminder.business.abstracts.ProductService;
-import com.example.expireddatereminder.dataAccess.abstracts.ProductRepository;
-import com.example.expireddatereminder.entities.concretes.Product;
+import com.example.expireddatereminder.service.ProductService;
+import com.example.expireddatereminder.repository.ProductRepository;
+import com.example.expireddatereminder.entity.Product;
 
 import java.util.List;
 
-public class ProductManager implements ProductService {
+public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
-    public ProductManager(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 

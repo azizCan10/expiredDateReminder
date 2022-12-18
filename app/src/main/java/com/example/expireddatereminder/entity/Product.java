@@ -1,6 +1,4 @@
-package com.example.expireddatereminder.entities.concretes;
-
-import android.text.Editable;
+package com.example.expireddatereminder.entity;
 
 public class Product {
     private int id;

@@ -1,21 +1,16 @@
 package com.example.expireddatereminder;
 
-import androidx.annotation.NonNull;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-
-import com.example.expireddatereminder.business.abstracts.ProductService;
-import com.example.expireddatereminder.business.concretes.ProductManager;
-import com.example.expireddatereminder.dataAccess.concretes.ProductRepositoryImpl;
 import com.example.expireddatereminder.databinding.ActivityMainBinding;
-import com.example.expireddatereminder.entities.concretes.Product;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -29,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewProductAdapter productAdapter;
 
     private AdView mAdView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("urun hatirlatma", "urun hatirlatma", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
     }
 
     @Override

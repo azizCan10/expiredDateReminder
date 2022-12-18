@@ -1,17 +1,14 @@
-package com.example.expireddatereminder.dataAccess.concretes;
+package com.example.expireddatereminder.repository.impl;
 
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
-import androidx.annotation.Nullable;
-
-import com.example.expireddatereminder.dataAccess.abstracts.ProductRepository;
-import com.example.expireddatereminder.entities.concretes.Product;
+import com.example.expireddatereminder.repository.ProductRepository;
+import com.example.expireddatereminder.entity.Product;
 
 import java.util.ArrayList;
 import java.util.List;
