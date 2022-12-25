@@ -50,7 +50,8 @@ public class ProductSettingsActivity extends AppCompatActivity {
         productService = new ProductServiceImpl(new ProductRepositoryImpl(this));
 
         initDatePicker();
-        productId = Integer.valueOf(getIntent().getStringExtra("id"));
+        productId = Integer.parseInt(getIntent().getStringExtra("id"));
+        System.out.println(productId);
 
         binding.edtTxtProductName.setText(getIntent().getStringExtra("productName"));
         binding.btnSelectDate.setText(getIntent().getStringExtra("expireDate"));

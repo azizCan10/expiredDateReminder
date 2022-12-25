@@ -41,6 +41,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void delete(int id) {
+        System.out.println(id);
         String sqlString = "DELETE FROM products WHERE id = " + id + "";
         SQLiteStatement sqLiteStatement = database.compileStatement(sqlString);
         sqLiteStatement.execute();
